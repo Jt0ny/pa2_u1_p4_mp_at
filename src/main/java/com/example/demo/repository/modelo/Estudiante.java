@@ -7,8 +7,15 @@ public class Estudiante {
 	private String nombre ;
 	private String apellido;
 	private String cedula;
-	private LocalDateTime nacimiento;
+	private LocalDateTime fechaNacimiento;
 	
+	
+	
+	@Override
+	public String toString() {
+		return "Estudiante [nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula + ", fechaNacimiento="
+				+ fechaNacimiento + "]";
+	}
 	// SET Y GET  
 	public String getNombre() {
 		return nombre;
@@ -28,11 +35,11 @@ public class Estudiante {
 	public void setCedula(String cedula) {
 		this.cedula = cedula;
 	}
-	public LocalDateTime getNacimiento() {
-		return nacimiento;
+	public LocalDateTime getFehcaNacimiento() {
+		return fechaNacimiento;
 	}
-	public void setNacimiento(LocalDateTime nacimiento) {
-		this.nacimiento = nacimiento;
+	public void setFechaNacimiento(LocalDateTime nacimiento) {
+		this.fechaNacimiento = nacimiento;
 	}
 	
 	
