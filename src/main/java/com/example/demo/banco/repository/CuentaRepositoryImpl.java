@@ -47,4 +47,10 @@ public class CuentaRepositoryImpl implements CuentaRepository{
 		return cuentaEncontrado; //un metodo no debe tener dos returns
 	}
 
+	@Override
+	public List<Cuenta> seleccionarTodos() {
+		// TODO Auto-generated method stub
+		return baseDatos;
+	}
+
 }

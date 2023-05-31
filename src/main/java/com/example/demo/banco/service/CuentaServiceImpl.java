@@ -1,5 +1,7 @@
 package com.example.demo.banco.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +36,12 @@ public class CuentaServiceImpl implements CuentaService{
 	public Cuenta buscarPorNumero(String numero) {
 		
 		return this.cuentaRepository.seleccionarPorNumero(numero);
+	}
+
+	@Override
+	public List<Cuenta> buscarTodos() {
+		// TODO Auto-generated method stub
+		return this.cuentaRepository.seleccionarTodos();
 	}
 
 }

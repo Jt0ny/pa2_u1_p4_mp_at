@@ -41,6 +41,13 @@ public class TransferenciaRepositoryImpl implements TransferenciaRepository{
 		}
 		return transEncontrado; //un metodo no debe tener dos returns
 	}
+
+	@Override
+	public List<Transferencia> seleccionarTodos() {
+		// TODO Auto-generated method stub
+		return baseDatos;
+	}
+
 	
 	
 

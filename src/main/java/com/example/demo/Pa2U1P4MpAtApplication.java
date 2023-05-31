@@ -6,12 +6,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.validation.AbstractBindingResult;
 
 import com.example.demo.banco.repository.modelo.Cuenta;
+import com.example.demo.banco.repository.modelo.Transferencia;
 import com.example.demo.banco.service.CuentaService;
 import com.example.demo.banco.service.TransferenciaService;
 import com.example.demo.repository.modelo.Estudiante;
@@ -22,6 +24,7 @@ public class Pa2U1P4MpAtApplication implements CommandLineRunner {//hacer ese im
 	
 	@Autowired
 	private CuentaService cuentaService;
+	
 	@Autowired
 	private TransferenciaService transferenciaService;
 
@@ -50,11 +53,20 @@ public class Pa2U1P4MpAtApplication implements CommandLineRunner {//hacer ese im
 		this.cuentaService.guardar(cta2);
 		
 		this.transferenciaService.realizar("5678", "2056", new BigDecimal(10));
-		System.out.println("Saldo Origen" +this.cuentaService.buscarPorNumero("5678").getSaldo());
 		
-		System.out.println("Saldo Destino"+ this.cuentaService.buscarPorNumero("2056").getSaldo());
+		System.out.println("Saldo Origen: " +this.cuentaService.buscarPorNumero("5678").getSaldo());
+		
+		System.out.println("Saldo Destino: "+ this.cuentaService.buscarPorNumero("2056").getSaldo());
 
 		
-
+// realizar un metodo del estado de cuenta // lista de transferencias
+		
+		List <Transferencia> todos = this.transferenciaService.buscarTodos();
+		System.out.println("\nReporte de todos los estudiantes");
+		for(Transferencia estu:todos) {
+			System.out.println(estu);
+		}
+		
+		
 	}
 }

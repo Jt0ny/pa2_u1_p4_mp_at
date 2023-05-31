@@ -16,7 +16,7 @@ public class Transferencia {
 	
 	@Override
 	public String toString() {
-		return "Transferencia [numero=" + numero + ", monto=" + monto + ", fecha=" + fecha + ", cuentaOrigen="
+		return "\nTransferencia [numero=" + numero + ", monto=" + monto + ", fecha=" + fecha + ", cuentaOrigen="
 				+ cuentaOrigen + ", cuentaDestino=" + cuentaDestino + "]";
 	}
 	
