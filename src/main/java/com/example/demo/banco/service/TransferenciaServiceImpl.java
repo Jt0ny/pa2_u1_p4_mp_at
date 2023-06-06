@@ -12,6 +12,7 @@ import com.example.demo.banco.repository.CuentaRepository;
 import com.example.demo.banco.repository.CuentaRepositoryImpl;
 import com.example.demo.banco.repository.TransferenciaRepository;
 import com.example.demo.banco.repository.modelo.Cuenta;
+import com.example.demo.banco.repository.modelo.Impuesto;
 import com.example.demo.banco.repository.modelo.Transferencia;
 
 @Service
@@ -27,8 +28,12 @@ public class TransferenciaServiceImpl implements  TransferenciaService {
 	@Qualifier("internacional")
 	private MontoDebitarService debitarService;
 	
+	@Autowired
+	private Impuesto impuesto;
 	@Override
 	public void guardar(Transferencia transferencia) {
+		System.out.println("La transferencia se va a calcular con el IVA ");
+		System.out.println(impuesto.getIva());
 		this.transferenciaRepository.insertar(transferencia);
 	}
 
@@ -51,26 +56,19 @@ public class TransferenciaServiceImpl implements  TransferenciaService {
 
 	@Override
 	public void realizar(String numeroCtaOrigen, String numeroCtaDestino, BigDecimal monto) {
-	
-		
 		//1.Consultar la cuenta de origen por el numero 
 		Cuenta ctaOrigen= this.cuentaRepositoy.seleccionarPorNumero(numeroCtaOrigen);
-		
 		//2.Consultar el saldo de la cuenta origen 
 		BigDecimal saldoOrigen=ctaOrigen.getSaldo();
 		BigDecimal montoDebitar=this.debitarService.calcular(monto);
-		
 		//3.Validar si el saldo es suficiente
 		if(montoDebitar.compareTo(saldoOrigen)<=0) {
-			
 			//5.Si es sufuciente ir al paso 6
 			//6.Realizamos la resta del saldo origen menos el monto
 			BigDecimal nuevoSaldoOrigen=saldoOrigen.subtract(montoDebitar);//equivalente hacer la resta
-			
 			//7.Actualizamos el nuevo saldo de la cuenta origen 
 				ctaOrigen.setSaldo(nuevoSaldoOrigen);
 				this.cuentaRepositoy.actualizar(ctaOrigen);
-			
 				//8.Consultar la cuenta de destino por el numero
 				Cuenta ctaDestino= this.cuentaRepositoy.seleccionarPorNumero(numeroCtaDestino);
 			//9.Consultamos el saldo de la cuenta destino

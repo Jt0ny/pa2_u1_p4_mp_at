@@ -7,7 +7,7 @@ public class Cuenta {
 	
 	private String numero;
 	 private String tipo;
-	 private BigDecimal saldo;//siempre para manejar temas monetrarios ocupar bigdecimal
+	 private BigDecimal saldo; //siempre para manejar temas monetrarios ocupar bigdecimal
 	 private String cedulaPropietario;
 	 private LocalDate fechaApertura;
 	 

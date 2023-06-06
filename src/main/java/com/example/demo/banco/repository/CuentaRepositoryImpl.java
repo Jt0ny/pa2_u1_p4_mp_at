@@ -30,7 +30,7 @@ public class CuentaRepositoryImpl implements CuentaRepository{
 	}
 
 	@Override
-	public void eliminar(String numero) {
+	public void eliminar(String numero) {	
 		Cuenta cuenta=this.seleccionarPorNumero(numero);
 		baseDatos.remove(cuenta);
 		
@@ -39,6 +39,7 @@ public class CuentaRepositoryImpl implements CuentaRepository{
 
 	@Override
 	public Cuenta seleccionarPorNumero(String numero) {
+	
 		Cuenta cuentaEncontrado=new Cuenta();
 		for(Cuenta cuenta: baseDatos){
 			if(numero.equals(cuenta.getNumero())) //evaluar con el elemento que no esta vacio
